@@ -1,0 +1,36 @@
+<div class="book-card m-2">
+    <div class="p-2">
+        <a href="{{ path('book_show', {'id': book.id}) }}">
+            {% if book.coverImage is not null %}
+                <img class="rounded mx-auto d-block img-fluid book-card__center-img mt-2"
+                     src="{{ asset('uploads/cover/' ~ book.coverImage) }}"
+                     alt="Обложка книги">
+            {% else %}
+                <img class="rounded mx-auto d-block img-fluid book-card__center-img mt-2"
+                     src="https://i.stack.imgur.com/1hvpD.jpg"
+                     alt="Картинка">
+            {% endif %}
+            <div class="book-card__info">
+                <div class="book-card__info-title">
+                    {{ book.name }}
+                </div>
+            </div>
+            <div class="book-card__info">
+            <span class="book-card__info-title">
+                Автор:
+            </span>
+                <span class="book-card__info-content">
+                {{ book.author }}
+            </span>
+            </div>
+            <div class="book-card__info">
+            <span class="book-card__info-title">
+                Дата чтения:
+            </span>
+                <span class="book-card__info-content">
+                {{ book.readDate|date('Y-m-d') }}
+            </span>
+            </div>
+        </a>
+    </div>
+</div>
