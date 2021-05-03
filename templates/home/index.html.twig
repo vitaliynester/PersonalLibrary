@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        {% if books is not empty %}
+            <div class="row">
+                {% for book in books %}
+                    {{ include('components/book-card.html.twig', {'book': book}) }}
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="text-center">
+                Книг не найдено!
+            </div>
+        {% endif %}
+    </div>
+    <div class="navigation text-center d-flex justify-content-center">
+        {{ knp_pagination_render(books) }}
+    </div>
+{% endblock %}
