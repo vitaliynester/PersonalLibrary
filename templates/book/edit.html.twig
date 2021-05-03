@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Изменить данные о книге{% endblock %}
+
+{% block body %}
+    <h1>Изменить данные о книге</h1>
+
+    <div class="col container">
+        {{ include('book/_form.html.twig', {'button_label': 'Обновить'}) }}
+        {{ include('book/_delete_form.html.twig') }}
+    </div>
+{% endblock %}

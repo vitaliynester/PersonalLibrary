@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ book.name }}{% endblock %}
+
+{% block body %}
+    <h1 class="text-center">{{ book.name }}</h1>
+
+    {% if book.coverImage is not null %}
+        <img class="rounded mx-auto d-block img-fluid" src="{{ asset('uploads/cover/' ~ book.coverImage) }}"
+             alt="Обложка книги">
+    {% endif %}
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Автор</th>
+            <td>{{ book.author }}</td>
+        </tr>
+        <tr>
+            <th>Книга</th>
+            <td>
+                {% if book.bookFile is not empty %}
+                    <a href="{{ asset('uploads/book/' ~ book.bookFile) }}">Посмотреть книгу</a>
+                {% else %}
+                    Отсутствует
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <th>Дата прочтения</th>
+            <td>{{ book.readDate ? book.readDate|date('Y-m-d') : '' }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    {% if app.user and app.user is same as book.owner %}
+        <a class="btn btn-info w-100" href="{{ path('book_edit', {'id': book.id}) }}">Изменить данные о книге</a>
+        {{ include('book/_delete_form.html.twig') }}
+    {% endif %}
+{% endblock %}

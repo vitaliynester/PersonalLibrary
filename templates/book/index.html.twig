@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Список имеющихся книг{% endblock %}
+
+{% block body %}
+    <table class="table">
+        {% if books is not empty %}
+            <thead>
+            <tr>
+                <th>Название</th>
+                <th>Автор</th>
+                <th>Обложка</th>
+                <th>Книга</th>
+                <th>Дата прочтения</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for book in books %}
+                <tr>
+                    <td><a href="{{ path('book_show', {'id': book.id}) }}">{{ book.name }}</a></td>
+                    <td>{{ book.author }}</td>
+                    {% if book.coverImage %}
+                        <td>
+                            <a href='{{ asset('uploads/cover/' ~ book.getCoverImage()) }}'>Открыть</a>
+                        </td>
+                    {% else %}
+                        <td>
+                            Отсутствует
+                        </td>
+                    {% endif %}
+                    {% if book.bookFile %}
+                        <td>
+                            <a href='{{ asset('uploads/book/' ~ book.getBookFile()) }}'>Прочитать</a>
+                        </td>
+                    {% else %}
+                        <td>
+                            Отсутствует
+                        </td>
+                    {% endif %}
+                    <td>{{ book.readDate ? book.readDate|date('Y-m-d') : '' }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        {% else %}
+            <tr>
+                <td colspan="7" class="text-center">Ничего не найдено</td>
+            </tr>
+        {% endif %}
+    </table>
+    <div class="navigation text-center d-flex justify-content-center">
+        {{ knp_pagination_render(books) }}
+    </div>
+{% endblock %}

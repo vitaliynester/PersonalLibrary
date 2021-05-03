@@ -1,0 +1,80 @@
+{{ form_start(form) }}
+    {% set formErrors = form.vars.errors.form.getErrors(true) %}
+    {% if formErrors|length %}
+        <div class="alert alert-danger">
+            {% for error in formErrors %}
+                <div>
+                    {{ error.message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+<div class="form-group">
+    {{ form_label(form.name, null,
+        form_errors(form.name)|length ? { 'label_attr': {'class': 'text-danger'} } : {}) }}
+    {{ form_widget(form.name,
+        form_errors(form.name)|length
+        ? {'attr': {'class': 'form-control is-invalid'}}
+        : {'attr': {'class': 'form-control'}} ) }}
+    <span class="text-danger edit__error-label">{{ form_errors(form.name) }}</span>
+</div>
+
+<div class="form-group">
+    {{ form_label(form.author, null,
+        form_errors(form.author)|length ? { 'label_attr': {'class': 'text-danger'} } : {}) }}
+    {{ form_widget(form.author,
+        form_errors(form.author)|length
+        ? {'attr': {'class': 'form-control is-invalid'}}
+        : {'attr': {'class': 'form-control'}} ) }}
+    <span class="text-danger edit__error-label">{{ form_errors(form.author) }}</span>
+</div>
+
+<div class="form-group">
+    {{ form_label(form.coverImageFile, null,
+        form_errors(form.coverImageFile)|length ? { 'label_attr': {'class': 'text-danger'} } : {}) }}
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Обложка книги</span>
+        </div>
+        <div class="custom-file">
+            {{ form_widget(form.coverImageFile,
+                form_errors(form.coverImageFile)|length
+                ? {'attr': {'class': 'custom-file-input is-invalid'}}
+                : {'attr': {'class': 'custom-file-input'}} ) }}
+            <label class="custom-file-label" for="inputGroupFile01">Выбрать</label>
+        </div>
+    </div>
+    <span class="text-danger edit__error-label">{{ form_errors(form.coverImageFile) }}</span>
+</div>
+
+<div class="form-group">
+    {{ form_label(form.bookFileFile, null,
+        form_errors(form.bookFileFile)|length ? { 'label_attr': {'class': 'text-danger'} } : {}) }}
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Файл книги</span>
+        </div>
+        <div class="custom-file">
+            {{ form_widget(form.bookFileFile,
+                form_errors(form.bookFileFile)|length
+                ? {'attr': {'class': 'custom-file-input is-invalid'}}
+                : {'attr': {'class': 'custom-file-input'}} ) }}
+            <label class="custom-file-label" for="inputGroupFile01">Выбрать</label>
+        </div>
+    </div>
+    <span class="text-danger edit__error-label">{{ form_errors(form.bookFileFile) }}</span>
+</div>
+
+<div class="form-group">
+    {{ form_label(form.readDate, null,
+        form_errors(form.readDate)|length ? { 'label_attr': {'class': 'text-danger'} } : {}) }}
+    {{ form_widget(form.readDate,
+        form_errors(form.readDate)|length
+        ? {'attr': {'class': 'form-control is-invalid'}}
+        : {'attr': {'class': 'form-control'}} ) }}
+    <span class="text-danger edit__error-label">{{ form_errors(form.readDate) }}</span>
+</div>
+
+<button class="btn btn-success w-100">{{ button_label|default('Сохранить') }}</button>
+{{ form_end(form) }}
