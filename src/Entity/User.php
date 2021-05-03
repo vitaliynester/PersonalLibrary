@@ -10,6 +10,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
+ * Сущность пользователя в БД
+ *
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="`user`")
  * @UniqueEntity(fields={"email"}, message="An account with the specified Email already exists!")
@@ -17,6 +19,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class User implements UserInterface
 {
     /**
+     * @var int Идентификатор пользователя
+     *
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -24,40 +28,50 @@ class User implements UserInterface
     private $id;
 
     /**
+     * @var string Электронная почта пользователя
+     *
      * @ORM\Column(type="string", length=180, unique=true)
      */
     private $email;
 
     /**
+     * @var array Список ролей пользователей
+     *
      * @ORM\Column(type="json")
      */
     private $roles = [];
 
     /**
      * @var string Хэш пароль пользователя
+     *
      * @ORM\Column(type="string")
      */
     private $password;
 
     /**
      * @var string Фамилия пользователя
+     *
      * @ORM\Column(type="string", length=255)
      */
     private $lastName;
 
     /**
      * @var string Имя пользователя
+     *
      * @ORM\Column(type="string", length=255)
      */
     private $firstName;
 
     /**
      * @var string Отчество пользователя
+     *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $patronymic;
 
     /**
+     * @var array Массив книг пользователя
+     *
      * @ORM\OneToMany(targetEntity=Book::class, mappedBy="owner", orphanRemoval=true)
      */
     private $books;
@@ -144,8 +158,6 @@ class User implements UserInterface
      */
     public function eraseCredentials()
     {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
     }
 
     public function getLastName(): ?string
