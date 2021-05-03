@@ -56,16 +56,15 @@ class BookController extends AbstractController
         Security $security,
         PaginatorInterface $paginator,
         Request $request
-    ): Response {
+    ): Response
+    {
         // Проверяем, что пользователь авторизован
         if (null === $security->getUser()) {
             return new RedirectResponse($this->generateUrl('home'));
         }
 
         // Если пользователь авторизован, то получаем все книги пользователя
-        $books = $bookRepository->findBy([
-            'owner' => $security->getUser(),
-        ]);
+        $books = $bookRepository->findBy(['owner' => $security->getUser(),],['readDate' => 'DESC']);
 
         // Создаем пагинацию по всем книгам (на одной странице 12 штук)
         $pagination = $paginator->paginate(
@@ -89,7 +88,8 @@ class BookController extends AbstractController
         Security $security,
         CoverFileUploader $coverFileUploader,
         BookFileUploader $bookFileUploader
-    ): Response {
+    ): Response
+    {
         // Проверяем, что пользователь авторизован
         if (null === $security->getUser()) {
             return new RedirectResponse($this->generateUrl('home'));
@@ -162,7 +162,8 @@ class BookController extends AbstractController
         Security $security,
         BookFileUploader $bookFileUploader,
         CoverFileUploader $coverFileUploader
-    ): Response {
+    ): Response
+    {
         // Проверяем, что создатель данной записи о книге это пользователь, который перешел по ссылке
         if ($book->getOwner() !== $security->getUser()) {
             return $this->redirect($this->generateUrl('home'));
@@ -230,7 +231,8 @@ class BookController extends AbstractController
         Security $security,
         BookFileUploader $bookFileUploader,
         CoverFileUploader $coverFileUploader
-    ): Response {
+    ): Response
+    {
         // Проверяем, что создатель данной записи о книге это пользователь, который перешел по ссылке
         if ($book->getOwner() !== $security->getUser()) {
             return $this->redirect($this->generateUrl('home'));
