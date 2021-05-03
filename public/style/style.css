@@ -1,0 +1,79 @@
+.book-card {
+  width: 31%;
+  border: 2px solid #c5c5c5;
+  border-radius: 10px;
+}
+
+.book-card a {
+  color: black;
+  text-decoration: none;
+}
+
+.book-card__center-img {
+  -o-object-fit: fill;
+     object-fit: fill;
+  height: 200px;
+  width: 100%;
+}
+
+.book-card__info-title {
+  font-weight: bold;
+}
+
+.edit__error-label ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.edit__error-label ul li {
+  padding: 0;
+  margin: 0;
+}
+
+/* Style The Dropdown Button */
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  border-radius: 5px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  margin: 0;
+  padding: 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+/*# sourceMappingURL=style.css.map */
