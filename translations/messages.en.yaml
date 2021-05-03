@@ -1,0 +1,11 @@
+First name: "Имя"
+Last name: "Фамилия"
+Patronymic: "Отчество"
+Email: "Электронная почта"
+Password: "Пароль"
+Confirm password: "Повторите пароль"
+
+Name: "Название книги"
+Author: "Автор книги"
+Book cover: "Файл для обложки книги"
+Book file: "Файл книги"
