@@ -7,11 +7,15 @@ use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * Сущность книги в БД
+ *
  * @ORM\Entity(repositoryClass=BookRepository::class)
  */
 class Book
 {
     /**
+     * Идентификатор книги
+     *
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -19,31 +23,43 @@ class Book
     private $id;
 
     /**
+     * Название книги
+     *
      * @ORM\Column(type="string", length=255)
      */
     private $name;
 
     /**
+     * Автор книги
+     *
      * @ORM\Column(type="string", length=255)
      */
     private $author;
 
     /**
+     * Название файла с изображением обложки книги
+     *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $coverImage;
 
     /**
+     * Название файла с книгой
+     *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $bookFile;
 
     /**
+     * Дата прочтения данной книги
+     *
      * @ORM\Column(type="datetime")
      */
     private $readDate;
 
     /**
+     * Пользователь создавший данную запись о книге
+     *
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="books")
      * @ORM\JoinColumn(nullable=false)
      */
