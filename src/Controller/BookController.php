@@ -27,14 +27,22 @@ class BookController extends AbstractController
      *
      * @Route("/", name="book_index", methods={"GET"})
      */
-    public function index(BookRepository $bookRepository): Response
+    public function index(BookRepository $bookRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        // Находим все книги в порядке прочтения
+        $books = $bookRepository->findBy(
+            [],
+            ['readDate' => 'DESC'],
+        );
+        // Создаем пагинацию по всем книгам (на одной странице 12 штук)
+        $pagination = $paginator->paginate(
+            $books,
+            $request->query->getInt('page', 1),
+            12
+        );
         // Передаем в шаблон все книги отсортированные по дате прочтения
         return $this->render('book/index.html.twig', [
-            'books' => $bookRepository->findBy(
-                [],
-                ['readDate' => 'DESC'],
-            ),
+            'books' => $pagination,
         ]);
     }
 
